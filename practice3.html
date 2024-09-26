@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Formulario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            margin: 50px auto;
+            padding: 20px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        #noname {
+            color: pink;
+            display: none; /* Ocultamos el mensaje por defecto */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Formulario de Registro</h2>
+        <form id="registerForm" action="#" method="POST">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" placeholder="Introduce tu nombre">
+
+            <span id="noname">Por favor, introduce tu nombre.</span>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+
+    <script>
+        // Obtener el formulario y los elementos relevantes
+        const form = document.getElementById('registerForm');
+        const nameInput = document.getElementById('name');
+        const noNameMessage = document.getElementById('noname');
+
+        // Añadir un evento de escucha para la validación antes de enviar el formulario
+        form.addEventListener('submit', function(event) {
+            // Evitar que el formulario se envíe si el campo de nombre está vacío
+            if (nameInput.value.trim() === '') {
+                // Mostrar el mensaje de error en color rosa
+                noNameMessage.style.display = 'block';
+                // Prevenir el envío del formulario
+                event.preventDefault();
+            } else {
+                // Ocultar el mensaje si el campo de nombre está lleno
+                noNameMessage.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
